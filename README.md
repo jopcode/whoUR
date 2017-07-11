@@ -3,7 +3,6 @@
 # WhoUr
 
 Who ur is a simple tool in python for getting info of a website.
-This to
 
 #### Features:
 * Whois
