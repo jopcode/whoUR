@@ -16,6 +16,6 @@ Who ur is a simple tool in python for getting info of a website.
 ```
 git clone https://github.com/jopcode/whour
 cd whour
-pip install BeautifulSoup
+pip install -r requirements.txt
 python whoUR.py
 ```
