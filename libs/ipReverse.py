@@ -4,7 +4,7 @@ from libs.colors import *
 
 # IP Reverse Lookup
 def ipReverse(url_input):
-    url = urllib.urlopen('http://api.hackertarget.com/reverseiplookup/?q='+url_input).read()
+    url = urllib.urlopen('http://api.hackertarget.com/reverseiplookup/?q='+str(url_input)).read()
    
    
     soup = BeautifulSoup(url, "lxml")
