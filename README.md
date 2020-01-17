@@ -5,6 +5,8 @@
 WhoUr is a simple tool in python for getting info of a website and scan sqli vul with google.
 this is fast but is not powerful, actually is under construction, but is usefully.
 
+This project has been update for use python3.
+
 
 [![asciicast](https://asciinema.org/a/150443.png)](https://asciinema.org/a/150443)
 
@@ -24,6 +26,10 @@ You can use you own dork(inurl:"index.php?id=") or a random dork from 'dics/dork
 ```
 git clone https://github.com/jopcode/whour
 cd whour
-pip install -r requirements.txt
-python whoUR.py
+pip3 install -r requirements.txt
+python3 whoUR.py
 ```
+
+## Change-Log
+### 1.6
+[17-01-2020] retake project, Update code for use python3, Fix some bug

@@ -1,36 +1,35 @@
 from libs.colors import *
-import urllib2, urllib
+import urllib3, urllib
+
 
 # Admin Pages Finder
-def adminFinder(url_input, dic_adminsPage):
-    print P+"\n-------------------------"
-    print P+"-A D M I N  F I N D E R -"
-    print P+"-------------------------\n"
-    print B+"[!] Scann in Process...\n"
+def admin_finder(url_input, dic_adminsPage):
+    print(P+'\n-------------------------')
+    print(P+'-A D M I N  F I N D E R -')
+    print(P+'-------------------------\n')
+    print(B+'[!] Scann in Process...\n')
+
     with open(dic_adminsPage) as f:
-        adminPageFound = []
-        adminPageNotFound = 0
+        admin_page_found = []
+        admin_page_not_found = 0
         contents = f.readlines()
-        print P+'[+] Please be Patient, This May Take a While\n'
+        print(P+'[+] Please be Patient, This May Take a While\n')
+        http = urllib3.PoolManager()
         for content in contents:
             url_request = url_input+'/'+content
-            url = urllib2.Request('http://'+url_request)
             try:
-                request = urllib2.urlopen(url)
-            except urllib2.HTTPError as e:
-                if e.code == 401:
-                    adminPageFound.append('http://'+url_request)
+                url = http.request('GET', 'http://'+url_request)
+            except urllib3.exceptions.HTTPError as e:
+                if e == 401:
+                    admin_page_found.append('http://'+url_request)
                 else:
-                    ++adminPageNotFound
-            except urllib2.URLError:
+                    ++admin_page_not_found
+            except urllib3.exceptions.RequestError:
                 pass
             else:
-                if request.url == url_request:
-                    adminPageFound.append('http://'+request.url)
-                else:
-                    ++adminPageNotFound
+                admin_page_found.append('http://' + url_request)
 
-        print G+'[!] Admin Pages Found: '+str(len(adminPageFound))
+        print(G+'[!] Admin Pages Found: '+str(len(admin_page_found)))
 
-        for page in adminPageFound:
-            print lB+'\n[+] '+ page
+        for page in admin_page_found:
+            print(lB+'\n[+] '+ page)

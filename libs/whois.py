@@ -1,15 +1,16 @@
 from bs4 import BeautifulSoup
-import urllib2,urllib
+import urllib3,urllib
 from libs.colors import *
+
 
 # WHOIS Lookup
 def whois(url_input):
-    print P+"\n-------------------------"
-    print P+"-W H O  I S  L O O K U P-"
-    print P+"-------------------------\n"
-    print B+"[!] Scann in Process...\n"
-
-    url = urllib2.urlopen('http://api.hackertarget.com/whois/?q='+url_input).read()
+    print(P+'\n-------------------------')
+    print(P+'-W H O  I S  L O O K U P-')
+    print(P+'-------------------------\n')
+    print(B+'[!] Scann in Process...\n')
+    http = urllib3.PoolManager()
+    url = http.request('GET','http://api.hackertarget.com/whois/?q='+str(url_input)).data
     soup = BeautifulSoup(url, 'lxml')
 
-    print G+soup.p.string
+    print(G+str(soup.p.string))
